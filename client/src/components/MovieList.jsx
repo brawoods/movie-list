@@ -1,11 +1,20 @@
 import React from 'react';
 import Movie from './Movie.jsx';
 
-const MovieList = () => {
-
+const MovieList = ({movies}) => {
   return (
-    <div>Movie list goes here
-      <div>
+    <div>
+      {movies.map((movie) => {
+        // console.log(movie)
+        return <Movie movie={movie} />
+      })}
+    </div>
+  );
+};
+
+export default MovieList;
+
+      {/* <div>
         <span>Mean Girls</span>
       </div>
       <div>
@@ -19,9 +28,4 @@ const MovieList = () => {
       </div>
       <div>
         <span>Ex Machina</span>
-      </div>
-    </div>
-  );
-};
-
-export default MovieList;
+      </div> */}

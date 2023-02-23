@@ -2,27 +2,25 @@ import React from 'react';
 import AppHeader from './AppHeader.jsx';
 import MovieList from './MovieList.jsx';
 import Movie from './Movie.jsx';
+import Search from './Search.jsx';
 
 const App = (props) => {
-  const [movies, setMovies] = React.useState([ {title: 'Mean Girls'},   {title: 'Hackers'},   {title: 'The Grey'},   {title: 'Sunshine'},   {title: 'Ex Machina'}, ]);
+  const [movies, setMovies] = React.useState([ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'}, ]);
+
 
   return (
-    <><div>
+    <div>
       <div>Hello, I am the App!</div>
       <div>
-        <h2>
-          <AppHeader />
-        </h2>
+        <AppHeader />
       </div>
       <div>
-        <div>
-          <MovieList />
-        </div>
+        <Search />
+      </div>
+      <div>
+        <MovieList movies={movies}/>
       </div>
     </div>
-
-    </>
-
   );
 }
 
