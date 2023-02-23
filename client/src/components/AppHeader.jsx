@@ -1,7 +1,13 @@
+import React from 'react'
+
 const AppHeader = () => {
 
   return (
-    <div>Hello from the AppHeader</div>
+    <div>
+      <h2>
+        MovieList
+      </h2>
+    </div>
   );
 };
 

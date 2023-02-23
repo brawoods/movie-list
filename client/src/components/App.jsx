@@ -1,23 +1,22 @@
 import React from 'react';
-// import AppHeader from './AppHeader.jsx';
+import AppHeader from './AppHeader.jsx';
+import MovieList from './MovieList.jsx';
+import Movie from './Movie.jsx';
 
-const App = ({ AppHeader }) => {
+const App = (props) => {
+  const [movies, setMovies] = React.useState([ {title: 'Mean Girls'},   {title: 'Hackers'},   {title: 'The Grey'},   {title: 'Sunshine'},   {title: 'Ex Machina'}, ]);
+
   return (
     <><div>
-      <div>Hell, I am the App!</div>
+      <div>Hello, I am the App!</div>
       <div>
-        <h2 clasName='title'>
-          AppHeader goes here
+        <h2>
+          <AppHeader />
         </h2>
       </div>
-      <div>MovieList goes here
-        <div className='list'>
-
-        </div>
-      </div>
-      <div>Movie will go here
-        <div className='movie'>
-
+      <div>
+        <div>
+          <MovieList />
         </div>
       </div>
     </div>

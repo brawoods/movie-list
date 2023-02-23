@@ -1,8 +1,14 @@
-const MovieList = () => {
+import React from 'react';
+
+const Movie = () => {
 
   return (
-    <div>Hello from the movie list component</div>
+    <div>
+      <div>
+        Movie details will go here
+      </div>
+    </div>
   );
 };
 
-export default MovieList;
+export default Movie;
