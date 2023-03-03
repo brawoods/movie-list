@@ -3,14 +3,15 @@ import AppHeader from './AppHeader.jsx';
 import MovieList from './MovieList.jsx';
 import Movie from './Movie.jsx';
 import Search from './Search.jsx';
+import AddMovie from './AddMovie.jsx';
 
 const App = (props) => {
-  let movieData = [ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'}];
-  const [movies, setMovies] = React.useState(movieData);
+  let movieLibrary = [ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'}];
+  const [movies, setMovies] = React.useState(movieLibrary);
 
   const filterMovies = (param) => {
     if (param === '') {
-      setMovies(movieData);
+      setMovies(movieLibrary);
     } else {
       setMovies(
         movies.filter((movie, index) => {
@@ -23,22 +24,41 @@ const App = (props) => {
     }
   };
 
+  const addToLibrary = (movieTitle) => {
+    // create a new movie object
+    let newMovie = {title: movieTitle};
+    movieLibrary.push(newMovie);
+    // filterMovies('');
+      // add title property given title
+    // push new movie object to movieLibrary
+  }
+
   const handleSearch = (param) => {
     // TODO handle if no searchParam given
     if (!param) {
-      console.log('no param given');
       filterMovies('');
     } else {
-      console.log('param given: ', param);
       filterMovies(param);
     }
   };
+
+  const handleAdd = (title) => {
+    // given movie title
+    if (title) {
+      addToLibrary(title);
+    }
+    // invoke addToLibrary
+    // console.log('handle Add clicked');
+  }
 
   return (
     <div>
       <div>Hello, I am the App!</div>
       <div>
         <AppHeader />
+      </div>
+      <div>
+        <AddMovie buildLibrary={handleAdd}/>
       </div>
       <div>
         <Search searchHandler={handleSearch}/>
