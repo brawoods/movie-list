@@ -5,24 +5,34 @@ import Movie from './Movie.jsx';
 import Search from './Search.jsx';
 
 const App = (props) => {
-  const [movies, setMovies] = React.useState([ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'}, ]);
+  let movieData = [ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'}];
+  const [movies, setMovies] = React.useState(movieData);
 
-  const searchMovies = movies.filter((movie, index, movies) => {
-    // movies[index].title == /*e.target.value*/
-    console.log('movies in search: ', movies[index].title);
-  })
-
-  const searchHandler = (item, cb) => {
-    cb(item);
+  const filterMovies = (param) => {
+    if (param === '') {
+      setMovies(movieData);
+    } else {
+      setMovies(
+        movies.filter((movie, index) => {
+          if (movies[index].title === param) {
+            console.log('filtered movie: ' + movies[index].title);
+            return movie;
+          }
+        })
+      )
+    }
   };
 
-    // filter
-    // if title == movies[0].title
-      // return movies[0].title
-  }
-  // React.useEffect((e) => {
-  //   console.log('useEffect message: ', e.target.value);
-  // });
+  const handleSearch = (param) => {
+    // TODO handle if no searchParam given
+    if (!param) {
+      console.log('no param given');
+      filterMovies('');
+    } else {
+      console.log('param given: ', param);
+      filterMovies(param);
+    }
+  };
 
   return (
     <div>
@@ -31,14 +41,18 @@ const App = (props) => {
         <AppHeader />
       </div>
       <div>
-        <Search />
+        <Search searchHandler={handleSearch}/>
       </div>
       <div>
         <MovieList movies={movies}/>
       </div>
     </div>
   );
-}
+  }
+  // React.useEffect((e) => {
+  //   console.log('useEffect message: ', e.target.value);
+  // });
+
 
 
 export default App;

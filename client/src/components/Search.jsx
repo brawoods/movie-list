@@ -1,12 +1,17 @@
 import React from 'react';
+// import App from './App.jsx';
 
-const Search = () => {
+const Search = ({searchHandler}) => {
+  const [text, setText] = React.useState('');
+
+  React.useEffect(() => {
+  }, [text])
+
 
   return (
     <div>
-      <div>Search</div>
-      <input type='text' onChange={(e) => console.log(e.target.value)}></input>
-      <input type='button' value='Search'></input>
+      <input type='text' onChange={(e) => setText(e.target.value)}></input>
+      <input type='button' value='Search' onClick={() => searchHandler(text)} ></input>
     </div>
   )
 };
