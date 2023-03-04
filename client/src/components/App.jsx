@@ -9,11 +9,23 @@ import AddMovie from './AddMovie.jsx';
 const App = (props) => {
   let movieLibrary = [ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'} ];
   const [movies, setMovies] = React.useState(movieLibrary);
+  const [searchText, setSearchText] = React.useState('');
+
+  // React.useEffect(() => {
+  // }, [searchText])
+
+  const handleSearch = () => {
+    // TODO handle if no searchParam given
+    if (!searchText) {
+      filterMovies();
+    }
+    filterMovies(searchText);
+    setSearchText('');
+
+  };
 
   const filterMovies = (param) => {
-    if (param === '') {
-      setMovies(movieLibrary);
-    } else {
+    if (param) {
       setMovies(
         movies.filter((movie, index) => {
           if (movies[index].title === param) {
@@ -22,7 +34,10 @@ const App = (props) => {
           }
         })
       )
+    } else {
+      setMovies(movieLibrary);
     }
+
   };
 
   const addToLibrary = (movieTitle) => {
@@ -32,14 +47,7 @@ const App = (props) => {
     setMovies(movies.concat(newMovie));
   }
 
-  const handleSearch = (param) => {
-    // TODO handle if no searchParam given
-    if (!param) {
-      filterMovies('');
-    } else {
-      filterMovies(param);
-    }
-  };
+
 
   const handleAdd = (param) => {
     // given movie title
@@ -60,7 +68,7 @@ const App = (props) => {
         <AddMovie buildLibrary={handleAdd}/>
       </div>
       <div>
-        <Search searchHandler={handleSearch}/>
+        <Search searchText={searchText} setSearchText={setSearchText} searchHandler={handleSearch}/>
       </div>
       <div>
         <MovieList movies={movies}/>
