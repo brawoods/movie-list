@@ -4,9 +4,10 @@ import MovieList from './MovieList.jsx';
 import Movie from './Movie.jsx';
 import Search from './Search.jsx';
 import AddMovie from './AddMovie.jsx';
+// import movieLibrary from './MovieLibrary.jsx';
 
 const App = (props) => {
-  let movieLibrary = [ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'}];
+  let movieLibrary = [ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'} ];
   const [movies, setMovies] = React.useState(movieLibrary);
 
   const filterMovies = (param) => {
@@ -16,7 +17,7 @@ const App = (props) => {
       setMovies(
         movies.filter((movie, index) => {
           if (movies[index].title === param) {
-            console.log('filtered movie: ' + movies[index].title);
+            // console.log('filtered movie: ' + movies[index].title);
             return movie;
           }
         })
@@ -26,11 +27,9 @@ const App = (props) => {
 
   const addToLibrary = (movieTitle) => {
     // create a new movie object
-    let newMovie = {title: movieTitle};
-    movieLibrary.push(newMovie);
-    // filterMovies('');
-      // add title property given title
-    // push new movie object to movieLibrary
+    let newMovie = [{title: movieTitle}];
+    // console.log(`tried to add ${newMovie[0].title} to library`);
+    setMovies(movies.concat(newMovie));
   }
 
   const handleSearch = (param) => {
@@ -42,10 +41,10 @@ const App = (props) => {
     }
   };
 
-  const handleAdd = (title) => {
+  const handleAdd = (param) => {
     // given movie title
-    if (title) {
-      addToLibrary(title);
+    if (param) {
+      addToLibrary(param);
     }
     // invoke addToLibrary
     // console.log('handle Add clicked');
