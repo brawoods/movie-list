@@ -7,18 +7,16 @@ import AddMovie from './AddMovie.jsx';
 // import movieLibrary from './MovieLibrary.jsx';
 
 const App = (props) => {
-  let movieLibrary = [ {title: 'Mean Girls'}, {title: 'Hackers'}, {title: 'The Grey'}, {title: 'Sunshine'}, {title: 'Ex Machina'} ];
-  const [movies, setMovies] = React.useState(movieLibrary);
+  let testData = [ {title: 'Mean Girls', watched: true}, {title: 'Hackers', watched: true}, {title: 'The Grey', watched: false}, {title: 'Sunshine', watched: false}, {title: 'Ex Machina', watched: false} ];
+  const [movies, setMovies] = React.useState(testData);
   const [searchText, setSearchText] = React.useState('');
+  const [newMovieText, setMovieText] = React.useState('');
 
   // React.useEffect(() => {
   // }, [searchText])
 
-  const handleSearch = () => {
+  const searchHandler = () => {
     // TODO handle if no searchParam given
-    if (!searchText) {
-      filterMovies();
-    }
     filterMovies(searchText);
     setSearchText('');
 
@@ -35,7 +33,7 @@ const App = (props) => {
         })
       )
     } else {
-      setMovies(movieLibrary);
+      setMovies(testData);
     }
 
   };
@@ -49,11 +47,10 @@ const App = (props) => {
 
 
 
-  const handleAdd = (param) => {
+  const handleAdd = () => {
     // given movie title
-    if (param) {
-      addToLibrary(param);
-    }
+    addToLibrary(newMovieText);
+    setMovieText('');
     // invoke addToLibrary
     // console.log('handle Add clicked');
   }
@@ -65,10 +62,10 @@ const App = (props) => {
         <AppHeader />
       </div>
       <div>
-        <AddMovie buildLibrary={handleAdd}/>
+        <AddMovie newMovieText={newMovieText} setMovieText={setMovieText} handleAdd={handleAdd}/>
       </div>
       <div>
-        <Search searchText={searchText} setSearchText={setSearchText} searchHandler={handleSearch}/>
+        <Search searchText={searchText} setSearchText={setSearchText} searchHandler={searchHandler}/>
       </div>
       <div>
         <MovieList movies={movies}/>

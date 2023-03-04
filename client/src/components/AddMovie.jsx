@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddMovie = ({buildLibrary}) => {
+const AddMovie = ({newMovieText, setMovieText, handleAdd}) => {
   const [text, setText] = React.useState('');
 
   React.useEffect(() => {
@@ -8,8 +8,8 @@ const AddMovie = ({buildLibrary}) => {
 
   return (
     <div>
-      <input type='text' onChange={(e) => setText(e.target.value)}></input>
-      <input type='button' value='Add Movie' onClick={() => buildLibrary(text)} ></input>
+      <input type='text' value={newMovieText} onChange={(e) => setMovieText(e.target.value)}></input>
+      <input type='button' value='Add' onClick={handleAdd} ></input>
     </div>
   )
 }
